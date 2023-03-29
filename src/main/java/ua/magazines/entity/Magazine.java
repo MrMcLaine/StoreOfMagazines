@@ -1,10 +1,22 @@
 package ua.magazines.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "magazine")
 public class Magazine {
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column(name = "price_for_mount")
     private Double priceForMount;
+
+    public Magazine() {
+    }
 
     public Magazine(Integer id, String name, String description, Double priceForMount) {
         this.id = id;

@@ -1,13 +1,25 @@
 package ua.magazines.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "payment")
 public class Payment {
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column(name = "user_id")
     private Integer userId;
+    @Column(name = "magazine_id")
     private Integer magazineId;
+    @Column(name = "date_of_payment")
     private Date dateOfPayment;
+    @Column(name = "sum_payment")
     private Double sumPayment;
+
+    public Payment() {
+    }
 
     public Payment(Integer id, Integer userId, Integer magazineId, Date dateOfPayment, Double sumPayment) {
         this.id = id;
