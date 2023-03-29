@@ -1,12 +1,26 @@
 package ua.magazines.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column
     private String email;
+    @Column
     private String password;
+    @Column
     private Role role;
+
+    public User() {
+    }
 
     public User(Integer id, String firstName, String lastName, String email, String password, Role role) {
         this.id = id;
