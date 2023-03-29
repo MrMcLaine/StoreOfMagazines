@@ -9,7 +9,6 @@ import ua.magazines.service.PaymentService;
 import ua.magazines.service.impl.MagazineServiceImpl;
 import ua.magazines.service.impl.PaymentServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +40,7 @@ public class BucketServlet extends HttpServlet {
             paymentDto.paymentId = payment.getId();
             paymentDto.dateOfPayment = payment.getDateOfPayment();
 
-            Magazine magazine = idToMagazine.get(payment.getMagazineId());
+            Magazine magazine = idToMagazine.get(payment.getMagazine().getId());
             paymentDto.magazineName = magazine.getName();
             paymentDto.magazineDescription = magazine.getDescription();
             paymentDto.sumPayment = magazine.getPriceForMount();

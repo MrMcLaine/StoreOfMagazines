@@ -7,12 +7,13 @@ import java.util.Date;
 @Table(name = "payment")
 public class Payment {
     @Id
-    @GeneratedValue
-    private Integer id;
-    @Column(name = "user_id")
-    private Integer userId;
-    @Column(name = "magazine_id")
-    private Integer magazineId;
+    private String id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "magazine_id", referencedColumnName = "id")
+    private Magazine magazine;
     @Column(name = "date_of_payment")
     private Date dateOfPayment;
     @Column(name = "sum_payment")
@@ -21,43 +22,28 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Integer id, Integer userId, Integer magazineId, Date dateOfPayment, Double sumPayment) {
-        this.id = id;
-        this.userId = userId;
-        this.magazineId = magazineId;
-        this.dateOfPayment = dateOfPayment;
-        this.sumPayment = sumPayment;
-    }
-
-    public Payment(Integer userId, Integer magazineId, Date dateOfPayment, Double sumPayment) {
-        this.userId = userId;
-        this.magazineId = magazineId;
-        this.dateOfPayment = dateOfPayment;
-        this.sumPayment = sumPayment;
-    }
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getMagazineId() {
-        return magazineId;
+    public Magazine getMagazine() {
+        return magazine;
     }
 
-    public void setMagazineId(Integer magazineId) {
-        this.magazineId = magazineId;
+    public void setMagazine(Magazine magazine) {
+        this.magazine = magazine;
     }
 
     public Date getDateOfPayment() {
@@ -82,8 +68,8 @@ public class Payment {
         if (!(o instanceof Payment payment)) return false;
 
         if (getId() != null ? !getId().equals(payment.getId()) : payment.getId() != null) return false;
-        if (getUserId() != null ? !getUserId().equals(payment.getUserId()) : payment.getUserId() != null) return false;
-        if (getMagazineId() != null ? !getMagazineId().equals(payment.getMagazineId()) : payment.getMagazineId() != null)
+        if (getUser() != null ? !getUser().equals(payment.getUser()) : payment.getUser() != null) return false;
+        if (getMagazine() != null ? !getMagazine().equals(payment.getMagazine()) : payment.getMagazine() != null)
             return false;
         if (getDateOfPayment() != null ? !getDateOfPayment().equals(payment.getDateOfPayment()) : payment.getDateOfPayment() != null)
             return false;
@@ -93,8 +79,8 @@ public class Payment {
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
-        result = 31 * result + (getMagazineId() != null ? getMagazineId().hashCode() : 0);
+        result = 31 * result + (getUser() != null ? getUser().hashCode() : 0);
+        result = 31 * result + (getMagazine() != null ? getMagazine().hashCode() : 0);
         result = 31 * result + (getDateOfPayment() != null ? getDateOfPayment().hashCode() : 0);
         result = 31 * result + (getSumPayment() != null ? getSumPayment().hashCode() : 0);
         return result;
@@ -104,8 +90,8 @@ public class Payment {
     public String toString() {
         return "Payment{" +
                "id=" + id +
-               ", userId=" + userId +
-               ", magazineId=" + magazineId +
+               ", user=" + user +
+               ", magazine=" + magazine +
                ", dateOfPayment=" + dateOfPayment +
                ", sumPayment=" + sumPayment +
                '}';
