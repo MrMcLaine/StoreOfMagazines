@@ -72,7 +72,6 @@ public class UserDaoImpl implements UserDao {
     public User getUserByEmail(String email) {
         User user = null;
         try {
-            em.getTransaction().begin();
             CriteriaBuilder builder = em.getCriteriaBuilder();
             CriteriaQuery<User> criteria = builder.createQuery(User.class);
             Root<User> from = criteria.from(User.class);
@@ -80,6 +79,7 @@ public class UserDaoImpl implements UserDao {
             criteria.where(builder.equal(from.get("email"), email));
             TypedQuery<User> typed = em.createQuery(criteria);
             user = typed.getSingleResult();
+
         } catch (Exception e) {
             LOGGER.error(e);
         }
