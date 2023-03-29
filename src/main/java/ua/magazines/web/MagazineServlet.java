@@ -22,7 +22,10 @@ public class MagazineServlet extends HttpServlet {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
 
-        Magazine magazine  = new Magazine(name, description, getValidatedPrice(price));
+        Magazine magazine  = new Magazine();
+        magazine.setName(name);
+        magazine.setDescription(description);
+        magazine.setPriceForMount(getValidatedPrice(price));
         magazineService.create(magazine);
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");

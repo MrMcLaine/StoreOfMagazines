@@ -18,19 +18,6 @@ public class Magazine {
     public Magazine() {
     }
 
-    public Magazine(Integer id, String name, String description, Double priceForMount) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.priceForMount = priceForMount;
-    }
-
-    public Magazine(String name, String description, Double priceForMount) {
-        this.name = name;
-        this.description = description;
-        this.priceForMount = priceForMount;
-    }
-
     public Integer getId() {
         return id;
     }

@@ -5,7 +5,6 @@ import ua.magazines.entity.User;
 import ua.magazines.service.UserService;
 import ua.magazines.service.impl.UserServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,13 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if (!email.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty()) {
-            userService.create(new User(firstName, lastName, email, password, Role.USER));
+            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setRole(Role.USER);
+            userService.create(user);
         }
 
         resp.setContentType("text/plain");
