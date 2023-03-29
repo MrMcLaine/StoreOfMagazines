@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment create(Payment payment) {
-        LOGGER.info("create payment by user with id " + payment.getUserId());
+        LOGGER.info("create payment by user with id " + payment.getUser().getId());
         return paymentDao.create(payment);
     }
 
