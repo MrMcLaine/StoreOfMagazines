@@ -23,6 +23,7 @@ public class UserDaoImpl implements UserDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             LOGGER.error(e);
+            em.getTransaction().rollback();
         }
         return user;
     }
@@ -77,5 +78,9 @@ public class UserDaoImpl implements UserDao {
             LOGGER.error(e);
         }
         return user;
+    }
+
+    public EntityManager getEntityManager() {
+        return em;
     }
 }

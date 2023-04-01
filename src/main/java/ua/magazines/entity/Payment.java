@@ -7,6 +7,8 @@ import java.util.Date;
 @Table(name = "payment")
 public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private String id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

@@ -22,5 +22,4 @@ public class FactoryManager {
         }
         return entityManager;
     }
-
 }
