@@ -16,18 +16,23 @@ public class User {
     private String email;
     @Column
     private String password;
+    @Enumerated(EnumType.STRING)
     @Column
     private Role role;
 
     public User() {
     }
 
-    public Integer getId() {
-        return id;
+    public User(String firstName, String lastName, String email, String password, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
     public String getFirstName() {

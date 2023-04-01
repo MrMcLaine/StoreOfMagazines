@@ -7,9 +7,6 @@ import ua.magazines.shared.FactoryManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,13 +69,9 @@ public class UserDaoImpl implements UserDao {
     public User getUserByEmail(String email) {
         User user = null;
         try {
-            CriteriaBuilder builder = em.getCriteriaBuilder();
-            CriteriaQuery<User> criteria = builder.createQuery(User.class);
-            Root<User> from = criteria.from(User.class);
-            criteria.select(from);
-            criteria.where(builder.equal(from.get("email"), email));
-            TypedQuery<User> typed = em.createQuery(criteria);
-            user = typed.getSingleResult();
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class);
+            query.setParameter("email", email);
+            user = query.getSingleResult();
 
         } catch (Exception e) {
             LOGGER.error(e);
